@@ -45,11 +45,12 @@ func TestGenerateTraces(t *testing.T) {
 			ResourceAttributes:    nil,
 			SkipSettingGRPCLogger: true,
 		},
-		NumTraces:   6000,
-		ServiceName: "foo",
-		StatusCode:  "0",
-		LoadSize:    0,
-		Batch:       true,
+		NumTraces:      6000,
+		ServiceName:    "foo",
+		StatusCode:     "0",
+		LoadSize:       0,
+		Batch:          true,
+		UseCompression: true,
 	}
 	go func() {
 		err = traces.Start(cfg)

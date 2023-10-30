@@ -27,6 +27,10 @@ func grpcExporterOptions(cfg *Config) []otlptracegrpc.Option {
 		grpcExpOpt = append(grpcExpOpt, otlptracegrpc.WithHeaders(cfg.Headers))
 	}
 
+	if cfg.UseCompression {
+		grpcExpOpt = append(grpcExpOpt, otlptracegrpc.WithCompressor("gzip"))
+	}
+
 	return grpcExpOpt
 }
 
@@ -44,6 +48,10 @@ func httpExporterOptions(cfg *Config) []otlptracehttp.Option {
 
 	if len(cfg.Headers) > 0 {
 		httpExpOpt = append(httpExpOpt, otlptracehttp.WithHeaders(cfg.Headers))
+	}
+
+	if cfg.UseCompression {
+		httpExpOpt = append(httpExpOpt, otlptracehttp.WithCompression(otlptracehttp.GzipCompression))
 	}
 
 	return httpExpOpt

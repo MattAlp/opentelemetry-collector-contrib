@@ -18,6 +18,8 @@ type Config struct {
 	StatusCode       string
 	Batch            bool
 	LoadSize         int
+	// TODO Raise this for all types of telemetry generation
+	UseCompression bool
 }
 
 // Flags registers config flags.
@@ -32,4 +34,5 @@ func (c *Config) Flags(fs *pflag.FlagSet) {
 	fs.StringVar(&c.StatusCode, "status-code", "0", "Status code to use for the spans, one of (Unset, Error, Ok) or the equivalent integer (0,1,2)")
 	fs.BoolVar(&c.Batch, "batch", true, "Whether to batch traces")
 	fs.IntVar(&c.LoadSize, "size", 0, "Desired minimum size in MB of string data for each trace generated. This can be used to test traces with large payloads, i.e. when testing the OTLP receiver endpoint max receive size.")
+	fs.BoolVar(&c.UseCompression, "compression", true, "Whether to compress traffic")
 }
