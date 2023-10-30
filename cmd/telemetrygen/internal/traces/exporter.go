@@ -17,6 +17,7 @@ func grpcExporterOptions(cfg *Config) []otlptracegrpc.Option {
 		otlptracegrpc.WithDialOption(
 			grpc.WithBlock(),
 		),
+		otlptracegrpc.WithCompressor("no compression"),
 	}
 
 	if cfg.Insecure {
@@ -36,6 +37,7 @@ func httpExporterOptions(cfg *Config) []otlptracehttp.Option {
 	httpExpOpt := []otlptracehttp.Option{
 		otlptracehttp.WithEndpoint(cfg.Endpoint()),
 		otlptracehttp.WithURLPath(cfg.HTTPPath),
+		otlptracehttp.WithCompression(otlptracehttp.NoCompression),
 	}
 
 	if cfg.Insecure {
