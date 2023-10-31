@@ -54,7 +54,7 @@ func (w worker) simulateTraces(telemetryAttributes []attribute.KeyValue) {
 		)
 		sp.SetAttributes(telemetryAttributes...)
 		for j := 0; j < w.loadSize; j++ {
-			sp.SetAttributes(attribute.String(fmt.Sprintf("load-%v", j), string(make([]byte, charactersPerMB))))
+			sp.SetAttributes(attribute.String(fmt.Sprintf("load-%v", j), string(make([]byte, charactersPerMB/1024))))
 		}
 
 		childCtx := ctx

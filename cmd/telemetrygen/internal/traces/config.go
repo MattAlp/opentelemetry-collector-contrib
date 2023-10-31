@@ -33,6 +33,6 @@ func (c *Config) Flags(fs *pflag.FlagSet) {
 	fs.StringVar(&c.ServiceName, "service", "telemetrygen", "Service name to use")
 	fs.StringVar(&c.StatusCode, "status-code", "0", "Status code to use for the spans, one of (Unset, Error, Ok) or the equivalent integer (0,1,2)")
 	fs.BoolVar(&c.Batch, "batch", true, "Whether to batch traces")
-	fs.IntVar(&c.LoadSize, "size", 0, "Desired minimum size in MB of string data for each trace generated. This can be used to test traces with large payloads, i.e. when testing the OTLP receiver endpoint max receive size.")
+	fs.IntVar(&c.LoadSize, "size", 0, "Desired minimum size in bytes of string data for each trace generated. This can be used to test traces with large payloads, i.e. when testing the OTLP receiver endpoint max receive size.")
 	fs.BoolVar(&c.UseCompression, "compression", false, "Whether to compress traffic")
 }
